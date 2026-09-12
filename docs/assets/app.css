@@ -53,7 +53,7 @@ h1, h2, p { margin-top: 0; }
 .zoom-controls output { min-width: 45px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 750; }
 .zoom-controls .fit-button { padding-inline: 9px; border-left: 1px solid #c8d8d0; border-radius: 0 5px 5px 0; white-space: nowrap; }
 .sheet-scroll { overflow-x: auto; background: #dce2e7; }
-.excel-grid { width: 100%; min-width: 860px; table-layout: fixed; border-spacing: 0; border-collapse: separate; background: var(--paper); }
+.excel-grid { width: 1178px; min-width: 1178px; table-layout: fixed; border-spacing: 0; border-collapse: separate; background: var(--paper); }
 .excel-grid th, .excel-grid td { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .excel-grid thead th { position: sticky; top: 0; z-index: 3; height: 26px; color: #3f4c58; background: #e8edf1; font-size: .72rem; font-weight: 600; text-align: center; }
 .row-number-column { width: 34px; }

@@ -14,7 +14,7 @@ const storageKey = `mooc-444-static-${slug}-draft-v1`;
 const zoomKey = `mooc-444-static-${slug}-zoom-v1`;
 
 let sheetScale = 1;
-let autoFit = true;
+let autoFit = false;
 
 function applyZoom(value, fit = false) {
   const requested = Number.isFinite(value) ? value : 1;
@@ -28,7 +28,7 @@ function applyZoom(value, fit = false) {
 
 function fitToScreen() {
   excelGrid.style.zoom = "1";
-  excelGrid.style.width = `${Math.max(860, sheetScroll.clientWidth)}px`;
+  excelGrid.style.width = "1178px";
   const baseWidth = excelGrid.scrollWidth;
   const availableWidth = Math.max(1, sheetScroll.clientWidth - 2);
   applyZoom(Math.min(1, availableWidth / baseWidth), true);
@@ -148,8 +148,8 @@ window.addEventListener("afterprint", () => {
   });
 });
 
-// Start with every column visible, even if a previous visit used manual zoom.
-fitToScreen();
+// Keep the same landscape table layout on desktop and mobile.
+applyZoom(1);
 let previousWidth = sheetScroll.clientWidth;
 new ResizeObserver(() => {
   const width = sheetScroll.clientWidth;
