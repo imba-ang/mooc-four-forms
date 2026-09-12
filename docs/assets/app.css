@@ -44,7 +44,7 @@ h1, h2, p { margin-top: 0; }
 .mode-notice { display: flex; gap: 9px; align-items: baseline; padding: 12px 16px; margin-bottom: 14px; border-left: 4px solid var(--orange); background: #fff8ec; color: #62411d; font-size: .9rem; }
 
 .workbook { overflow: hidden; background: var(--paper); border: 1px solid #c8d0d7; border-radius: 10px; box-shadow: 0 10px 34px rgb(28 42 54 / 9%); }
-.workbook-bar { display: flex; gap: 10px; align-items: center; padding: 10px 14px; color: #fff; background: #185c37; font-size: .78rem; }
+.workbook-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 10px 14px; color: #fff; background: #185c37; font-size: .78rem; }
 .workbook-hint { margin-left: auto; opacity: .82; font-weight: 400; }
 .workbook-icon { font-size: 1.25rem; }
 .zoom-controls { display: inline-flex; align-items: center; gap: 3px; margin-left: 10px; padding: 3px; color: #19352a; background: rgb(255 255 255 / 94%); border-radius: 7px; }
@@ -145,7 +145,7 @@ h1, h2, p { margin-top: 0; }
   .back-link, .mode-badge, .mode-notice, .workbook-bar, .sheet-tabs, .action-bar { display: none !important; }
   .workbook { border: 0; box-shadow: none; }
   .sheet-scroll { overflow: visible; }
-  .excel-grid { min-width: 0; font-size: 9pt; }
+  .excel-grid { width: 100% !important; zoom: 1 !important; min-width: 0; font-size: 9pt; }
   .excel-grid thead { display: none; }
   .row-number-column, .row-number { display: none; }
   .field-cell textarea { resize: none; overflow: visible; }

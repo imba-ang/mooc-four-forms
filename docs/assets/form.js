@@ -14,10 +14,12 @@ const storageKey = `mooc-444-static-${slug}-draft-v1`;
 const zoomKey = `mooc-444-static-${slug}-zoom-v1`;
 
 let sheetScale = 1;
+let autoFit = true;
 
-function applyZoom(value) {
+function applyZoom(value, fit = false) {
   const requested = Number.isFinite(value) ? value : 1;
-  sheetScale = Math.min(1.6, Math.max(0.4, Math.round(requested * 10) / 10));
+  autoFit = fit;
+  sheetScale = fit ? requested : Math.min(1.6, Math.max(0.1, Math.round(requested * 100) / 100));
   excelGrid.style.zoom = String(sheetScale);
   zoomLevel.value = `${Math.round(sheetScale * 100)}%`;
   zoomLevel.textContent = zoomLevel.value;
@@ -26,9 +28,10 @@ function applyZoom(value) {
 
 function fitToScreen() {
   excelGrid.style.zoom = "1";
+  excelGrid.style.width = `${Math.max(860, sheetScroll.clientWidth)}px`;
   const baseWidth = excelGrid.scrollWidth;
   const availableWidth = Math.max(1, sheetScroll.clientWidth - 2);
-  applyZoom(Math.min(1, availableWidth / baseWidth));
+  applyZoom(Math.min(1, availableWidth / baseWidth), true);
   sheetScroll.scrollLeft = 0;
 }
 
@@ -145,5 +148,14 @@ window.addEventListener("afterprint", () => {
   });
 });
 
-applyZoom(Number.parseFloat(localStorage.getItem(zoomKey) || "1"));
+// Start with every column visible, even if a previous visit used manual zoom.
+fitToScreen();
+let previousWidth = sheetScroll.clientWidth;
+new ResizeObserver(() => {
+  const width = sheetScroll.clientWidth;
+  if (width !== previousWidth) {
+    previousWidth = width;
+    if (autoFit) fitToScreen();
+  }
+}).observe(sheetScroll);
 loadDraft();
